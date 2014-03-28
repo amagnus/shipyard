@@ -300,3 +300,11 @@ def toggle_protect_container(request, host_id, container_id):
     container.save()
     return HttpResponse('done')
 
+def get_exposed_ports(request):
+    if request.is_ajax():
+	image_name = request.GET['q']
+	c = client.Client(base_url='unix://var/run/docker.sock')
+	inspect = c.inspect_image(image_name)
+
+	for k, v in inspect['config']['ExposedPorts'].items():
+    	    return HttpResponse(k.split('/')[0])

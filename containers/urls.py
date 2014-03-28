@@ -40,4 +40,5 @@ urlpatterns = patterns('containers.views',
         'container_info', name='containers.container_info'),
     url(r'^buildimage/$', 'build_image',
         name='containers.build_image'),
+    url(r'^exposedports/$', 'get_exposed_ports'),
 )
